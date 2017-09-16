@@ -16,5 +16,10 @@ Instalar node_modules en el proyecto
 npm install gulp -D
 ```
 
+Istalar Plugin para GULP
+```sh
+npm install gulp-inline-css
+```
+
 #### Para iniciar
 https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
