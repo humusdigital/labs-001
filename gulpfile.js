@@ -12,11 +12,18 @@ gulp.task('default', function() {
         }))
         .pipe(gulp.dest('build/'));
 });
+
+var styleInject = require("gulp-style-inject");
+
+gulp.src("./src/*.html")
+    .pipe(styleInject())
+    .pipe(gulp.dest("./dist"));
+
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 
 gulp.task('minify', function() {
-  return gulp.src('src/index.html')
+  return gulp.src('src/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('dist'));
 });
