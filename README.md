@@ -18,7 +18,10 @@ npm install gulp -D
 
 Istalar Plugin para GULP
 ```sh
-npm install gulp-inline-css
+npm install gulp-style-inject
+npm install gulp-htmlmin
+npm install gulp-cssmin
+npm install gulp-rename
 ```
 
 #### Para iniciar

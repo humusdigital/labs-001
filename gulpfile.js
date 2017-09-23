@@ -1,29 +1,22 @@
 //Gulp Magic
-var gulp = require('gulp'),
-    inlineCss = require('gulp-inline-css');
+var gulp = require('gulp');
+var styleInject = require("gulp-style-inject");
+var htmlmin = require('gulp-htmlmin');
+var cssmin = require('gulp-cssmin');
+var rename = require('gulp-rename');
+
 
 gulp.task('default', function() {
     return gulp.src('./*.html')
-        .pipe(inlineCss({
-            	applyStyleTags: true,
-            	applyLinkTags: true,
-            	removeStyleTags: true,
-            	removeLinkTags: true
-        }))
-        .pipe(gulp.dest('build/'));
+    .pipe(styleInject())
+    .pipe(cssmin())
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('build/'));
 });
 
-var styleInject = require("gulp-style-inject");
-
-gulp.src("./src/*.html")
-    .pipe(styleInject())
-    .pipe(gulp.dest("./dist"));
-
-var gulp = require('gulp');
-var htmlmin = require('gulp-htmlmin');
-
-gulp.task('minify', function() {
-  return gulp.src('src/*.html')
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('dist'));
+gulp.task('css', function () {
+    gulp.src('css/*.css')
+        .pipe(cssmin())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('css'));
 });
